@@ -3,22 +3,21 @@
 Intro
 =====
 
-To run run developer dependencies as docker containers inside a VM.
+*Purpose*: To run developer dependencies as docker containers inside a VM.
 
-First time users must download all containers.
-It might takes a while, but download overhead for any container change
-(or introducing new container) is limited and much lower than re-downloading the whole VM.
+*Benetifs*: 
 
-
+* Easier/faster to add & change dependecies. Developers only need to know the syntax of Dockerfile: https://docs.docker.com/reference/builder/
+* Faster download. The first download round might takes a while, but the overhead for any new/changed container is very low, much lower than re-downloading the whole VM.
 
 Suggested Components
 ====================
 
-* Boot2docker - to run docker containers inside it (26MB), it is a customized version: https://github.com/boot2docker/boot2docker
-* Vagrant for running boot2docker: https://github.com/mitchellh/boot2docker-vagrant-box
-* docker-compose for building and running docker containers: https://docs.docker.com/compose/
-* Rake tasks for managing the VM and the containers
-* private docker registry: https://docs.docker.com/registry/deploying/
+* *Boot2docker* - to run docker containers inside it on any OS (size: 26MB): https://github.com/boot2docker/boot2docker
+* *Vagrant* for running boot2docker: https://github.com/mitchellh/boot2docker-vagrant-box
+* *docker-compose* for building and running docker containers: https://docs.docker.com/compose/
+* *Rake* tasks for managing the VM and the containers
+* *private docker registry*: https://docs.docker.com/registry/deploying/
 
 TODOs
 =====
@@ -31,6 +30,7 @@ TODOs
 ** Each subfolder inside that folder has service files, a version file and a *Dockerfile*.
 ** The build script checks the private registry against the remote registry version and (re-)build and push any new or updated container(s).
 ** We may avoid docker-compose and rely on some ruby/bash scripts.
+* We might be able to dockerize build, update and run processes. Having a docker container (with docker-compose inside it) which runs/build/update other containers.
 
 Issues
 ======
