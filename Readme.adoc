@@ -8,29 +8,29 @@ Intro
 *Benetifs*: 
 
 * Easier/faster to add & change dependecies. Developers only need to know the syntax of Dockerfile: https://docs.docker.com/reference/builder/
-* Faster download. The first download round might takes a while, but the overhead for any new/changed container is very low, much lower than re-downloading the whole VM.
+* Faster download. The first download round might takes awhile, but the overhead for any new/changed container is very low, much lower than re-downloading the whole VM.
 
 Suggested Components
 ====================
 
-* *Boot2docker* - to run docker containers inside it on any OS (size: 26MB): https://github.com/boot2docker/boot2docker
-* *Vagrant* for running boot2docker: https://github.com/mitchellh/boot2docker-vagrant-box
-* *docker-compose* for building and running docker containers: https://docs.docker.com/compose/
+* *Boot2docker* to run docker containers on any OS (size: 26MB): https://github.com/boot2docker/boot2docker
+* *Vagrant* and *Virtualbox* for running boot2docker: https://github.com/mitchellh/boot2docker-vagrant-box
+* *docker-compose* for building & running containers: https://docs.docker.com/compose/
 * *Rake* tasks for managing the VM and the containers
 * *private docker registry*: https://docs.docker.com/registry/deploying/
 
 TODOs
 =====
 
-* Find a way to avoid port-forwarding for each docker-container in the VM (e.g. we can open all ports)
-* Automate auto-update docker containers on vm start (check docker-compose for this)
+* Find a way to avoid port-forwarding for each container in the VM (e.g. we can open all ports)
+* Automate update process on vm start (check docker-compose for this)
 * Remove extra ssh step for entering docker containers (`vagrant ssh` then `docker exec x /bin/bash`) 
 * Simplify process of adding/updating docker containers. Suggested approach:
 ** There is a folder named *docker-containers*.
-** Each subfolder inside that folder has service files, a version file and a *Dockerfile*.
+** Each subfolder inside that folder has: service related files, a *version* file and a *Dockerfile*.
 ** The build script checks the private registry against the remote registry version and (re-)build and push any new or updated container(s).
 ** We may avoid docker-compose and rely on some ruby/bash scripts.
-* We might be able to dockerize build, update and run processes. Having a docker container (with docker-compose inside it) which runs/build/update other containers.
+** or We might be able to dockerize build, update and run processes. Having a docker container (with docker-compose inside it) which runs/build/update other containers.
 
 Issues
 ======
